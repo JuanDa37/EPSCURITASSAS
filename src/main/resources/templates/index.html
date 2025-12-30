@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Curitas S.A.</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/10086/10086922.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <style>
+        * {
+            font-family: "Lato", sans-serif;
+            margin: 0%;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            max-height: 450px;
+            opacity: .5 ;
+        }
+
+        .carousel-inner {
+            height: 450px;
+        }
+
+        .card:hover {
+            box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-item a {
+            display: inline-block;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-item a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px; /* Grosor de la línea */
+            bottom: 0;
+            left: 0;
+            background-color: #37CDCD;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+
+        /* Animación al pasar el mouse */
+        .nav-item a:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .dropdown-item:focus {
+            background: #ECF0F1;
+            color: #37CDCD;
+        }
+
+        #redes i:hover {
+            color: #37CDCD;
+        }
+
+    </style>
+    <header>
+        <nav class="navbar navbar-expand-sm bg-white navbar-dark fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="margin-left: 5%;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/10086/10086922.png" alt="Avatar Logo"
+                        style="width:40px;">
+                    <span class="text-black fw-bold" style="margin-left: 10%;">CURITAS S.A. fd</span>
+                </a>
+                <ul class="navbar-nav" style="margin-right: 5%;">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" style="color: #37CDCD;" href="#" target="_blank">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  text-black" href="#">Afiliados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  text-black" href="#">Empleadores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">Independientes</a>
+                    </li>
+                    <li class="nav-item dropdown rounded-pill px-3" style="background: #37CDCD;">
+                        <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown">Iniciar Sesión</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/loginUsuario}" target="_blank">Usuarios afiliados</a></li>
+                            <li><a class="dropdown-item" th:href="@{/loginMedico}" target="_blank">Médicos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/loginAdministrador}" target="_blank">Administrador</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="carouselExampleAutoplaying" class="carousel slide m-auto" style="background: #000;" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="https://images.pexels.com/photos/5340280/pexels-photo-5340280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Te atendemos a tí y a tú familia con amor.</h3>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://images.pexels.com/photos/6753302/pexels-photo-6753302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Contamos con los mejores médicos especialistas.</h3>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://images.pexels.com/photos/4259140/pexels-photo-4259140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Tu familia siempre estará en las mejores manos.</h3>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="container-fluid" style="padding: 0;">
+            <div class="row">
+                <div class="col-5">
+                    <div class="container d-flex justify-content-center align-items-center" style="background: #37CDCD; width: 650px; height: 475px;">
+                        <div class="column">
+                            <div class="mb-2" style="width: 50px; height: 3px; background-color: #fff;"></div>
+                        <h2 class="text-white fw-bold" style="margin-right: 20%;">Infórmate  sobre el <br>COVID-19</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mt-5" style="position: absolute; margin-left: 35%;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://images.pexels.com/photos/3902881/pexels-photo-3902881.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top">
+                        <div class="card-body">
+                          <h5 class="card-title fw-bold">Usa tapabocas al salir</h5>
+                          <p class="card-text">Úsalos como parte de una estrategia integral de medidas para suprimir la transmisión y salvar vidas.</p>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <a href="#" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col mt-5" style="position: absolute; margin-left: 57%;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://images.pexels.com/photos/3951862/pexels-photo-3951862.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top">
+                        <div class="card-body">
+                          <h5 class="card-title fw-bold">Usa alcohol con frecuencia</h5>
+                          <p class="card-text">Este ayudará a desinfectar tus manos por un corto periodo de tiempo.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col d-flex justify-content-end">
+                                    <a href="#" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col mt-5" style="position: absolute; margin-left: 79%;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://images.pexels.com/photos/4261252/pexels-photo-4261252.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top">
+                        <div class="card-body">
+                          <h5 class="card-title fw-bold">Ponle tapabocas a tus hijos</h5>
+                          <p class="card-text">Darle un buen uso a este implento te mantendrá seguro a tí y a tu familia en estos tiempos.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col d-flex justify-content-end">
+                                    <a href="#" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-5">
+                    <div class="container d-flex justify-content-center align-items-center" style="background: #fff; width: 650px; height: 380px; margin-left: 15%;">
+                        <div class="column">
+                            <div class="col-9">
+                                <div class="mb-2" style="width: 50px; height: 3px; background-color: #000;"></div>
+                                <h2 class="fw-bold" style=" color: #37CDCD;">Servicios a un solo clic</h2>
+                                <p style="margin-left: 5%;">Realiza fácilmente tus procesos con Curitas S.A. ¡Conoce aquí las soluciones virtuales que tenemos especialmente para ti!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mt-5" style="position: absolute; margin-left: 45%;">
+                    <div class="card px-3" style="width: 12rem;">   
+                        <div class="card-top">
+                          <h5 class="card-title fw-bold text-center my-3">Citas médicas</h5>
+                        </div>
+                        <img src="/img/1.svg" class="card-img">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/loginUsuario}" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col mt-5" style="position: absolute; margin-left: 60%;">
+                    <div class="card px-3" style="width: 12rem;">   
+                        <div class="card-top">
+                          <h5 class="card-title fw-bold text-center my-3">Solicutud de medicamentos</h5>
+                        </div>
+                        <img src="/img/2.svg" class="card-img">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/loginUsuario}" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col mt-5" style="position: absolute; margin-left: 75%;">
+                    <div class="card px-3" style="width: 12rem;">   
+                        <div class="card-top">
+                          <h5 class="card-title fw-bold text-center my-3">Cambio de IPS</h5>
+                        </div>
+                        <img src="/img/3.svg" class="card-img">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/loginUsuario}" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-4" style="background: #ECF0F1;">
+            <div class="column">
+                <h2 class="text-center">Todo sobre afiliaciones</h2>
+            <div class="mt-2" style="width: 55px; height: 3px; margin-left: 48%; background-color: #000;"></div>
+            </div>
+            <div class="container" style="margin-left: 15%;">
+                <div class="row">
+                   <div class="col-5">
+                        <h3 class="mb-4">Quiero afiliarme</h3>
+                        <div class="container-fluid mb-3" style="background: #fff; border-radius: 10px; padding: 0;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <img src="https://images.pexels.com/photos/3807571/pexels-photo-3807571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="200px" height="100px" style="border-radius: 10px 0 0 10px;">
+                                </div>
+                                <div class="col-6">
+                                    <h5>Plan de Beneficios en Salud</h5>
+                                </div>
+                                <div class="col-2">
+                                    <a href="#" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="container-fluid mb-3" style="background: #fff; border-radius: 10px; padding: 0;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <img src="https://images.pexels.com/photos/302083/pexels-photo-302083.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="200px" height="100px" style="border-radius: 10px 0 0 10px;">
+                                </div>
+                                <div class="col-6">
+                                    <h5>Plan Complementario de Salud</h5>
+                                </div>
+                                <div class="col-2">
+                                    <a href="#" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="container-fluid mb-3" style="background: #fff; border-radius: 10px; padding: 0;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <img src="https://images.pexels.com/photos/4452209/pexels-photo-4452209.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="200px" height="100px" style="border-radius: 10px 0 0 10px;">
+                                </div>
+                                <div class="col-6">
+                                    <h5>Régimen subsidiado</h5>
+                                </div>
+                                <div class="col-2">
+                                    <a href="#" class="card-link fs-6 text-decoration-none fw-bold" style="color: #37CDCD;">Ver<i class='bx bx-right-arrow-alt bx-fade-right-hover'></i></a>
+                                </div>
+                            </div>
+                        </div> 
+                        <a href="#" class="text-end fw-bold" style="color: #37CDCD;">Solicitar turno virtual de afiliación</a>      
+                   </div>   
+                   <div class="col-4 mt-4">
+                    <div class="container" style="background: #37CDCD; width: 400px; height: 400px;">
+                        <div style="position: absolute; padding: 50px 0 20px 20px;">
+                            <img src="https://images.pexels.com/photos/8460095/pexels-photo-8460095.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="450px">
+                        </div>
+                    </div>
+                   </div>       
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="container py-5">
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/10086/10086922.png" width="50px" style="margin: 0 10px 20px 0;">
+                <h4 class="fw-bold">CURITAS S.A.</h4>
+            </div>
+            <div style="height: 1px; background: #ECF0F1; margin-bottom: 25px;"></div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-3">
+                    <ul>
+                        <li class="fw-bold">SOBRE NOSOTROS</li>
+                        <li>CE0008 de 2020</li>
+                        <li>Estados financieros</li>
+                        <li>Normatividad</li>
+                        <li>Corporativo</li>
+                        <li>Nuestras oficinas</li>
+                        <li>Trabaje con nosotros</li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <ul>
+                        <li class="fw-bold">SERVICIOS AL USUARIO</li>
+                        <li>Tiempo para tí</li>
+                        <li>Maternidad y primera infancia</li>
+                        <li>Para siempre</li>
+                        <li>Deberes y derechos del afiliado</li>
+                        <li>Afiliación para desempleados</li>
+                        <li>Atención virtual en Salud</li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <ul>
+                        <li class="fw-bold">LÍNEAS DE ATENCIÓN</li>
+                        <li>Bogotá: 601 448 6115</li>
+                        <li>Medellín: 604 468 6915</li>
+                        <li>Calí: 603 248 6135</li>
+                        <li>Bucaramanga: 607 498 6156</li>
+                        <li>Cucuta: 609 487 6165</li>
+                        <li>Resto del país: 01 8000 556 514</li>
+                    </ul>
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-9">
+                <h6 class="" style="margin-left: 20%;">&copy; Curitas S.A. 2023</h6>
+            </div>
+            <div class="col" id="redes">
+                <a href="#" style="color: #000;"><i class='bx bxl-facebook-circle m-2 fs-5'></i></a>
+                <a href="#" style="color: #000;"><i class='bx bxl-twitter m-2 fs-5' ></i></a>
+                <a href="#" style="color: #000;"><i class='bx bxl-youtube m-2 fs-5' ></i></a>
+                <a href="#" style="color: #000;"><i class='bx bxl-tiktok m-2 fs-5' ></i></a>
+            </div>          
+        </div>       
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+</html>
