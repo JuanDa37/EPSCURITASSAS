@@ -1,17 +1,20 @@
-# Imagen oficial y soportada de Java 17
+# Imagen oficial Java 17
 FROM eclipse-temurin:17-jdk
 
 # Directorio de trabajo
 WORKDIR /app
 
-# Copiamos el proyecto
+# Copiamos todo el proyecto
 COPY . .
 
-# Compilamos con Maven Wrapper
+# 🔑 Dar permiso de ejecución al Maven Wrapper
+RUN chmod +x mvnw
+
+# Compilar el proyecto
 RUN ./mvnw clean package
 
 # Puerto (Render usa PORT dinámico)
 EXPOSE 8080
 
-# Ejecutar la app
+# Ejecutar la aplicación
 CMD ["java", "-jar", "target/*.jar"]
