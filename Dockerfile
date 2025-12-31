@@ -1,8 +1,17 @@
-FROM openjdk:17
-VOLUME /tmp
-ENV IMG_PATH=/img
-EXPOSE 8094
-RUN mkdir -p /img
-COPY /target/proyectonu1-1.jar /appC.jar
-COPY /src/main/resources/application.properties /src/main/resources/application.properties
-ENTRYPOINT ["java","-jar","/appC.jar"]
+# Imagen oficial y soportada de Java 17
+FROM eclipse-temurin:17-jdk
+
+# Directorio de trabajo
+WORKDIR /app
+
+# Copiamos el proyecto
+COPY . .
+
+# Compilamos con Maven Wrapper
+RUN ./mvnw clean package
+
+# Puerto (Render usa PORT dinámico)
+EXPOSE 8080
+
+# Ejecutar la app
+CMD ["java", "-jar", "target/*.jar"]
