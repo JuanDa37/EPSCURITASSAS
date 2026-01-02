@@ -1,20 +1,21 @@
-# Imagen oficial Java 17
-FROM eclipse-temurin:17-jdk
+# =========================
+# BUILD STAGE
+# =========================
+FROM eclipse-temurin:17-jdk AS build
+WORKDIR /build
+COPY . .
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
 
-# Directorio de trabajo
+# =========================
+# RUNTIME STAGE
+# =========================
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
-# Copiamos todo el proyecto
-COPY . .
+# 👇 COPIAMOS EL JAR REAL
+COPY --from=build /build/target/*.jar app.jar
 
-# 🔑 Dar permiso de ejecución al Maven Wrapper
-RUN chmod +x mvnw
-
-# Compilar el proyecto
-RUN ./mvnw clean package
-
-# Puerto (Render usa PORT dinámico)
 EXPOSE 8080
 
-# Ejecutar la aplicación
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "app.jar"]
